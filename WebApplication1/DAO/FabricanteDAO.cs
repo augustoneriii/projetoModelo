@@ -15,11 +15,29 @@ namespace app.DAO
             _context = context;
         }
 
-        public async Task<List<FabricanteDTO>> GetAll()
+        public async Task<List<FabricanteDTO>> GetAll(FabricanteDTO dto)
         {
             var objSelect = new StringBuilder();
             objSelect.Append("SELECT \"IdFabricante\", \"Nome\", \"Endereco\", \"Telefone\" ");
-            objSelect.Append("FROM public.\"Fabricante\";");
+            objSelect.Append("FROM public.\"Fabricante\"");
+            objSelect.Append("WHERE 1 = 1 ");
+
+            if (dto.IdFabricante > 0)
+            {
+                objSelect.Append($"AND \"IdFabricante\" = {dto.IdFabricante} ");
+            }
+            if (!string.IsNullOrEmpty(dto.Nome))
+            {
+                objSelect.Append($"AND \"Nome\" = '{dto.Nome}' ");
+            }
+            if (!string.IsNullOrEmpty(dto.Endereco))
+            {
+                objSelect.Append($"AND \"Endereco\" = '{dto.Endereco}' ");
+            }
+            if (!string.IsNullOrEmpty(dto.Telefone))
+            {
+                objSelect.Append($"AND \"Telefone\" = '{dto.Telefone}' ");
+            }
 
             var dt = _context.ExecuteQuery(objSelect.ToString());
 

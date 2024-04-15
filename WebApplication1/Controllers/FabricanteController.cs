@@ -21,11 +21,11 @@ namespace app.Controllers
         // GET: Fabricante
         [Route("getAllFabricantes")]
         [HttpGet]
-        public async Task<IActionResult> GetAll()
+        public async Task<IActionResult> GetAll(FabricanteDTO dto)
         {
             try
             {
-                var response = await _be.GetAll();
+                var response = await _be.GetAll(dto);
                 return Ok(response);
             }
             catch (Exception ex)
@@ -40,14 +40,14 @@ namespace app.Controllers
         {
             try
             {
-                _context.BeginTransaction();  // Iniciar transação
+                _context.BeginTransaction();  
                 var response = await _be.Insert(fabricante);
-                _context.Commit();  // Confirmar transação
+                _context.Commit();  
                 return Ok(response);
             }
             catch (Exception ex)
             {
-                _context.Rollback();  // Reverter transação em caso de erro
+                _context.Rollback();  
                 return BadRequest(ex.Message);
             }
         }

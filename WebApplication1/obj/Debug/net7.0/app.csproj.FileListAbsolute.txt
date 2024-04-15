@@ -40,3 +40,8 @@ C:\Users\augusto.neri\Documents\estudos\AON\Sistema\WebApplication1\obj\Debug\ne
 C:\Users\augusto.neri\Documents\estudos\AON\Sistema\WebApplication1\obj\Debug\net7.0\app.pdb
 C:\Users\augusto.neri\Documents\estudos\AON\Sistema\WebApplication1\obj\Debug\net7.0\app.genruntimeconfig.cache
 C:\Users\augusto.neri\Documents\estudos\AON\Sistema\WebApplication1\obj\Debug\net7.0\ref\app.dll
+C:\Users\augusto.neri\Documents\estudos\AON\Sistema\WebApplication1\bin\Debug\net7.0\view\build\asset-manifest.json
+C:\Users\augusto.neri\Documents\estudos\AON\Sistema\WebApplication1\bin\Debug\net7.0\view\build\manifest.json
+C:\Users\augusto.neri\Documents\estudos\AON\Sistema\WebApplication1\bin\Debug\net7.0\view\package-lock.json
+C:\Users\augusto.neri\Documents\estudos\AON\Sistema\WebApplication1\bin\Debug\net7.0\view\package.json
+C:\Users\augusto.neri\Documents\estudos\AON\Sistema\WebApplication1\bin\Debug\net7.0\view\public\manifest.json

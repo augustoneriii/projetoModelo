@@ -17,13 +17,48 @@ namespace app.DAO
             _context = context;
         }
 
-        public async Task<List<ProdutoDTO>> GetAll()
+        public async Task<List<ProdutoDTO>> GetAll(ProdutoDTO dto)
         {
             var objSelect = new StringBuilder();
             objSelect.Append("SELECT prod.\"IdProduto\", prod.\"Nome\" AS \"NomeProduto\", prod.\"Preco\", prod.\"Quantidade\", ");
             objSelect.Append("fab.\"IdFabricante\", fab.\"Nome\" AS \"NomeFabricante\", fab.\"Endereco\", fab.\"Telefone\" ");
             objSelect.Append("FROM public.\"Produto\" prod ");
-            objSelect.Append("LEFT JOIN public.\"Fabricante\" fab ON prod.\"IdFabricante\" = fab.\"IdFabricante\";");
+            objSelect.Append("LEFT JOIN public.\"Fabricante\" fab ON prod.\"IdFabricante\" = fab.\"IdFabricante\"");
+            objSelect.Append("WHERE 1 = 1 ");
+
+            if (dto.IdProduto > 0)
+            {
+                objSelect.Append($"AND prod.\"IdProduto\" = {dto.IdProduto} ");
+            }
+            if (!string.IsNullOrEmpty(dto.Nome))
+            {
+                objSelect.Append($"AND prod.\"Nome\" = '{dto.Nome}' ");
+            }
+            if (dto.Preco > 0)
+            {
+                objSelect.Append($"AND prod.\"Preco\" = {dto.Preco} ");
+            }
+            if (dto.Quantidade > 0)
+            {
+                objSelect.Append($"AND prod.\"Quantidade\" = {dto.Quantidade} ");
+            }
+            if (dto.Fabricante.IdFabricante > 0)
+            {
+                objSelect.Append($"AND fab.\"IdFabricante\" = {dto.Fabricante.IdFabricante} ");
+            }
+            if (!string.IsNullOrEmpty(dto.Fabricante.Nome))
+            {
+                objSelect.Append($"AND fab.\"Nome\" = '{dto.Fabricante.Nome}' ");
+            }
+            if (!string.IsNullOrEmpty(dto.Fabricante.Endereco))
+            {
+                objSelect.Append($"AND fab.\"Endereco\" = '{dto.Fabricante.Endereco}' ");
+            }
+            if (!string.IsNullOrEmpty(dto.Fabricante.Telefone))
+            {
+                objSelect.Append($"AND fab.\"Telefone\" = '{dto.Fabricante.Telefone}' ");
+            }
+
 
             DataTable dt = _context.ExecuteQuery(objSelect.ToString());
             var produtos = new List<ProdutoDTO>();

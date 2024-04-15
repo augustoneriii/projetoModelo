@@ -14,10 +14,10 @@ namespace app.BE
             _context = context;
         }
 
-        public async Task<List<ProdutoDTO>> GetAll()
+        public async Task<List<ProdutoDTO>> GetAll(ProdutoDTO dto)
         {
             var dao = new ProdutoDAO(_context);
-            return await dao.GetAll();
+            return await dao.GetAll(dto);
         }
 
         public async Task<ProdutoRequest> Insert(ProdutoRequest produto)

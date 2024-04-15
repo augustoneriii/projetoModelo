@@ -21,11 +21,11 @@ namespace app.Controllers
 
         [Route("getAllProdutos")]
         [HttpGet]
-        public async Task<IActionResult> GetAll()
+        public async Task<IActionResult> GetAll(ProdutoDTO dto)
         {
             try
             {
-                var response = await _be.GetAll();
+                var response = await _be.GetAll(dto);
                 return Ok(response);
             }
             catch (Exception ex)
